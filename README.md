@@ -1,4 +1,4 @@
-# Configuring a Network Load Balancer on Server 2019
+# Configuring a Network Load Balancer in Server 2019
 
 <img width="949" height="676" alt="Screenshot 2025-07-25 at 4 38 49 AM" src="https://github.com/user-attachments/assets/45c9f022-52ea-4c66-ace6-af3b18cc2817" />
 
