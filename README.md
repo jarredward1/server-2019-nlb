@@ -234,9 +234,12 @@ The cluster distributed requests between both backend web servers while maintain
 ### Successful Load Balancing Test
 
 <img width="1227" height="925" alt="image" src="https://github.com/user-attachments/assets/6634f5b6-d2e6-4687-b6a2-5fcdcb61e929" />
-<img width="1223" height="925" alt="image" src="https://github.com/user-attachments/assets/e7fe0bd0-599d-4193-9f17-186eb2b76b76" />
 
 *Source: Report Page 84*
+
+<img width="1223" height="925" alt="image" src="https://github.com/user-attachments/assets/e7fe0bd0-599d-4193-9f17-186eb2b76b76" />
+
+*Source: Report Page 85*
 
 ---
 
