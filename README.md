@@ -1,4 +1,4 @@
-# Deploying a Network Load Balancer in Windows Server 2019
+# Network Load Balancing Cluster Deployment (Windows Server 2019)
 
 > A Windows Server 2019 lab deployment of a two-node Network Load Balancing cluster with IIS web servers and Active Directory Domain Services, demonstrating high availability and fault-tolerant web infrastructure.
 
