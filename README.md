@@ -1,12 +1,34 @@
-# Network Load Balancing Lab
+# Deploying a Network Load Balancer in Windows Server 2019
 
-## Overview
+> A Windows Server 2019 lab deployment of a two-node Network Load Balancing cluster with IIS web servers and Active Directory Domain Services, demonstrating high availability and fault-tolerant web infrastructure.
 
-This project demonstrates the deployment and configuration of a highly available web infrastructure using Windows Server Network Load Balancing (NLB). The environment consists of two IIS web servers configured within an NLB cluster and managed through Active Directory Domain Services (AD DS).
+---
 
-The objective was to create a fault-tolerant web environment capable of distributing client requests across multiple servers while maintaining service availability.
+## 📋 Table of Contents
 
-## Key Achievements
+- [Overview](#-overview)
+- [Key Achievements](#-key-achievements)
+- [Technologies Used](#-technologies-used)
+- [Project Objectives](#-project-objectives)
+- [Network Architecture](#-network-architecture)
+- [Server Configuration](#-server-configuration)
+- [Implementation Steps](#-implementation-steps)
+- [Results](#-results)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Screenshots](#-screenshots)
+- [Documentation](#-documentation)
+- [Lessons Learned](#-lessons-learned)
+- [Author](#-author)
+
+---
+
+## 📌 Overview
+
+This project demonstrates the deployment and configuration of a highly available web infrastructure using Windows Server Network Load Balancing (NLB). The environment consists of two IIS web servers configured within an NLB cluster and managed through Active Directory Domain Services (AD DS). The objective was to create a fault-tolerant web environment capable of distributing client requests across multiple servers while maintaining service availability.
+
+---
+
+## 🏆 Key Achievements
 
 - Built a two-node Network Load Balancing cluster
 - Configured Active Directory Domain Services
@@ -16,53 +38,31 @@ The objective was to create a fault-tolerant web environment capable of distribu
 
 ---
 
-## Table of Contents
+## 💻 Technologies Used
 
-- [Technologies Used](#technologies-used)
-- [Project Objectives](#project-objectives)
-- [Network Architecture](#network-architecture)
-- [Server Configuration](#server-configuration)
-- [Implementation Steps](#implementation-steps)
-  - [1. Server Preparation](#1-server-preparation)
-  - [2. Service Installation](#2-service-installation)
-  - [3. Active Directory Configuration](#3-active-directory-configuration)
-  - [4. Network Load Balancing](#4-network-load-balancing)
-  - [5. IIS Deployment](#5-iis-deployment)
-  - [6. DNS Resolution](#6-dns-resolution)
-- [Results](#results)
-- [Skills Demonstrated](#skills-demonstrated)
-- [Screenshots](#screenshots)
-- [Documentation](#documentation)
-- [Lessons Learned](#lessons-learned)
-
-## Technologies Used
-
-- Windows Server 2019
-- Internet Information Services (IIS)
-- Network Load Balancing (NLB)
-- Active Directory Domain Services (AD DS)
-- DNS
-- TCP/IP Networking
-- VirtualBox / VMware (Lab Environment)
+| Technology | Purpose |
+|------------|---------|
+| **Windows Server 2019** | Primary server operating system |
+| **Internet Information Services (IIS)** | Web server deployment |
+| **Network Load Balancing (NLB)** | Traffic distribution and high availability |
+| **Active Directory Domain Services (AD DS)** | Domain management and authentication |
+| **DNS** | Name resolution |
+| **TCP/IP Networking** | Static IP configuration and cluster addressing |
+| **VirtualBox / VMware** | Lab virtualization environment |
 
 ---
 
-## Project Objectives
+## 🎯 Project Objectives
 
-- Configure two Windows Server hosts
-- Assign static IP addresses
-- Install and configure IIS
-- Install and configure Network Load Balancing
-- Deploy Active Directory Domain Services
-- Promote a server to Domain Controller
-- Join additional servers to the domain
-- Create an NLB cluster
-- Deploy a test website on both servers
+- Configure two Windows Server hosts with static IP addresses
+- Install and configure IIS, NLB, and Active Directory Domain Services
+- Promote a server to Domain Controller and join additional servers to the domain
+- Create an NLB cluster and deploy a test website on both servers
 - Verify load-balanced access through a shared cluster address
 
 ---
 
-## Network Architecture
+## 🔷 Network Architecture
 
 ```text
                      Client
@@ -79,15 +79,14 @@ The objective was to create a fault-tolerant web environment capable of distribu
 | IIS Web Server |            | IIS Web Server |
 | Domain Control |            | Domain Member  |
 +----------------+            +----------------+
-
 ```
 
 ---
 
-## Server Configuration
+## 🖧 Server Configuration
 
 | Setting | NLB-Server1 | NLB-Server2 |
-|----------|------------|------------|
+|---------|-------------|-------------|
 | Hostname | NLB-server1 | NLB-server2 |
 | Role | Domain Controller | Domain Member |
 | Services | IIS, NLB, AD DS | IIS, NLB |
@@ -97,17 +96,16 @@ The objective was to create a fault-tolerant web environment capable of distribu
 ### Cluster Configuration
 
 | Setting | Value |
-|-----------|--------|
+|---------|-------|
 | Cluster IP | 192.168.50.200 |
 | Cluster Name | www.nlbcluster.com |
 | Mode | Multicast |
 
 ---
 
-## Implementation Steps
+## 🔧 Implementation Steps
 
 ### 1. Server Preparation
-
 - Generated unique SIDs using Sysprep
 - Completed OOBE configuration
 - Renamed servers
@@ -116,37 +114,18 @@ The objective was to create a fault-tolerant web environment capable of distribu
 ### 2. Service Installation
 
 Installed:
-
 - IIS Web Server
 - Network Load Balancing Feature
 - Active Directory Domain Services
 
 ### 3. Active Directory Configuration
-
-- Created a new forest
-- Promoted NLB-server1 to Domain Controller
-- Created domain:
-
-```text
-nlbserver.local
-```
-
+- Created a new forest and promoted NLB-server1 to Domain Controller
+- Created domain: `nlbserver.local`
 - Joined NLB-server2 to the domain
 
 ### 4. Network Load Balancing
 
-Created an NLB cluster using:
-
-```text
-192.168.50.200
-```
-
-Added:
-
-- NLB-server1
-- NLB-server2
-
-Verified both hosts reached a **Converged** state.
+Created an NLB cluster using `192.168.50.200`, added both NLB-server1 and NLB-server2, and verified both hosts reached a **Converged** state.
 
 ### 5. IIS Deployment
 
@@ -163,11 +142,7 @@ Created a custom website on both servers:
 </html>
 ```
 
-Configured:
-
-- Website bindings
-- Physical paths
-- Default documents
+Configured website bindings, physical paths, and default documents.
 
 ### 6. DNS Resolution
 
@@ -179,25 +154,19 @@ Modified the hosts file:
 
 ---
 
-## Results
+## ✅ Results
 
 Successfully deployed:
-
 - Active Directory Domain
 - Two IIS Web Servers
 - Network Load Balancing Cluster
-- Shared Cluster IP Address
-- Website accessible through:
-
-```text
-www.nlbcluster.com
-```
+- Shared Cluster IP Address (`www.nlbcluster.com`)
 
 The cluster distributed requests between both backend web servers while maintaining service availability.
 
 ---
 
-## Skills Demonstrated
+## 💡 Skills Demonstrated
 
 - Windows Server Administration
 - Active Directory Management
@@ -211,50 +180,32 @@ The cluster distributed requests between both backend web servers while maintain
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
 ### Domain Controller Configuration
-
 <img width="1225" height="926" alt="image" src="https://github.com/user-attachments/assets/befc6573-33cc-4625-ab7d-4ed20c9dd823" />
 
-*Source: Report Page 53*
-
 ### NLB Cluster
-
 <img width="1045" height="785" alt="image" src="https://github.com/user-attachments/assets/5cb8aa51-bbc2-479b-a609-266616645d7c" />
 
-*Source: Report Page 61*
-
 ### IIS Website
-
 <img width="1227" height="925" alt="image" src="https://github.com/user-attachments/assets/a1fe67ef-38ea-4946-a248-9e5581b23e46" />
 
-*Source: Report Page 78*
-
 ### Successful Load Balancing Test
-
 <img width="1227" height="925" alt="image" src="https://github.com/user-attachments/assets/6634f5b6-d2e6-4687-b6a2-5fcdcb61e929" />
-
-*Source: Report Page 84*
-
 <img width="1223" height="925" alt="image" src="https://github.com/user-attachments/assets/e7fe0bd0-599d-4193-9f17-186eb2b76b76" />
 
-*Source: Report Page 85*
+---
+
+## 📄 Documentation
+
+[View full implementation guide (PDF)](https://github.com/jarredward1/Server_2019-NLB/blob/main/Network%20Load%20Balancing.pdf)
 
 ---
 
-## Documentation
-
-The complete step-by-step implementation guide is included in:
-
-[Network Load Balancing Project Guide](https://github.com/jarredward1/Server_2019-NLB/blob/main/Network%20Load%20Balancing.pdf)
-
----
-
-## Lessons Learned
+## 📖 Lessons Learned
 
 This project provided practical experience with:
-
 - Building highly available web infrastructure
 - Managing Windows Server roles and features
 - Configuring Active Directory environments
@@ -264,8 +215,8 @@ This project provided practical experience with:
 
 ---
 
-## Author
+## 👤 Author
 
 **Jarred Ward**
 
-Windows Server • Active Directory • IIS • Network Load Balancing • System Administration
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/jarredward1/)
